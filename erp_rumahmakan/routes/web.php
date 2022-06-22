@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\registerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,8 +23,12 @@ Route::get('/', function () {
 
 
 Route::post('/login', [loginController::class, 'authenticate']);
-Route::get('/dashboard', function () {
-    return view('dashboard', [
-        'title' => 'Login Page'
+Route::post('/logout', [loginController::class, 'logout']);
+
+Route::get('/admin', function () {
+    return view('admin/karyawan/dashboard', [
+        'title' => 'Admin'
     ]);
 });
+Route::get('admin/karyawan/add', [registerController::class, 'add']);
+Route::post('admin/karyawan/add', [registerController::class, 'store']);
